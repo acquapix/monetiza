@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate.ddl-auto: none
+    show-sql: false
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
+
+server:
+  port : ${PORT:8080}

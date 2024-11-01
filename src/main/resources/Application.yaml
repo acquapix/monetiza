@@ -1,0 +1,18 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: Monetiza
+    description: Monetiza
+    author: Aldrin
+    version: '@project.version@'
+spring:
+  profiles:
+    active: dev

@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.coleta</groupId>
 	<artifactId>monetiza</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>monetiza</name>
-	<description>Demo project for Spring Boot</description>
+	<description>monetiza</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -51,6 +51,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>monetiza</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
