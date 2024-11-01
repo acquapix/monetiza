@@ -8,4 +8,4 @@ FROM eclipse-temurin:21-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/target/monetiza.jar monetiza.jar
-CMD ["java", "-jar", "pce.jar"]
+CMD ["java", "-jar", "monetiza.jar"]
