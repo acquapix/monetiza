@@ -11,8 +11,8 @@ info:
   application:
     name: Monetiza
     description: Monetiza
-    author: Aldrin
+    author: Audrin
     version: '@project.version@'
 spring:
   profiles:
-    active: dev
+    active: prod
