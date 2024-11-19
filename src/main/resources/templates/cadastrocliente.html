@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title>Cadastro</title>
+</head>
+<body id="login-container">
+    <div id="login-img">
+        <img src="./img/peglev-icon.png" alt="PegLev">
+    </div>
+    <div id="login-card-container">
+        <div class="login-card-style">
+            <h1>CADASTRO</h1>
+            <p></p>
+            <form th:action="@{/cadastro}" method=post th:object="${cliente}">
+                <input type="text" th:field="*{nome}" placeholder="Nome">
+                <input type="text" th:field="*{endereco}" placeholder="Endereço">
+                <input type="text" th:field="*{email}" placeholder="e-mail">
+                 <input type="text" th:field="*{cpf}" placeholder="CPF">
+                 <input type="text" th:field="*{celular}" placeholder="Celular">
+                 <input type="text" th:field="*{senha}" placeholder="Senha">
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+        <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+    </div>
+
+    
+    <script src="./login.js" defer></script>
+    <script src="./crud.js"></script>
+</body>
+</html>

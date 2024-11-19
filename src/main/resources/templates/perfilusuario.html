@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos gerais */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Título */
+    h1 {
+      text-align: center;
+      margin-top: 80px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    /* Imagem do perfil */
+    .profile-image-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+    }
+
+    /* Seções de informações */
+    .info-section {
+      margin-left: 5px;
+    }
+
+    .info-section h3 {
+      color: blue;
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    .info-section p {
+      color: #333;
+      margin: 5px 0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .profile-image {
+        width: 100px;
+        height: 100px;
+      }
+
+      .info-section h3 {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Meu Perfil</h1>
+
+    <div class="profile-image-container">
+      <img src="https://avatars.githubusercontent.com/u/1713290?v=4" alt="Perfil" class="profile-image" />
+    </div>
+
+    <div class="info-section">
+      <h3>Dados pessoais:</h3>
+      <p>AUDRIN PEREIRA, 53 anos, DEVELOPER</p>
+
+      <h3>Formação:</h3>
+      <p>SISTEMAS PARA INTERNET - FATEC</p>
+      <p>ARTE PUBLICITARIA - ESCOLA PANAMERICANA DE ARTES</p>
+
+      <h3>Experiência:</h3>
+      <p>ABDL</p>
+      <p>SENAC</p>
+      <p>RÁDIO 95 FM</p>
+
+      <h3>Projetos:</h3>
+      <p>PEGLEV</p>
+      <p>EDUCADORES DO MEIO AMBIENTE</p>
+    </div>
+  </div>
+
+</body>
+</html>

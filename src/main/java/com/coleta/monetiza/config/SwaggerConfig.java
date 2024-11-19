@@ -22,8 +22,8 @@ public class SwaggerConfig {
 								.name("Apache 2.0")
 								.url("http://springdoc.org");
 		Info info = new Info()
-			.title("Aplicação Conta - FATEC Rubens Lara")
-			.description("API Conta Corrente")
+			.title("Aplicação PegLev")
+			.description("API Conta de Tokenização")
 			.version("v1.0.0")
 			.contact(contact)
 			.license(license);
