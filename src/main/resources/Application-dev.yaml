@@ -11,7 +11,6 @@ spring:
       settings.web-allow-others: true
 
   jpa:
-    hibernate.ddl-auto: none
     show-sql: true
 
 api:

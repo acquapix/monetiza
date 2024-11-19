@@ -15,4 +15,4 @@ info:
     version: '@project.version@'
 spring:
   profiles:
-    active: prod
+    active: dev

@@ -1,5 +1,5 @@
 package com.coleta.monetiza.model;
- 
+
 import java.util.Calendar;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -16,8 +16,10 @@ import jakarta.persistence.TemporalType;
 @Entity
 public class Movimentacao extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
+	@Column(name = "conta_id", nullable = false)
+	private long contaId;
 	@Column(name = "vl_valor")
-	private Float valor;
+	private double valor;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "nm_tipo_movimentacao")
 	private TipoMovimentacao tipo;
@@ -31,11 +33,19 @@ public class Movimentacao extends AbstractEntity {
 	public Movimentacao() {
 	}
 
-	public Float getValor() {
+	public long getContaId() {
+		return contaId;
+	}
+
+	public void setContaId(long contaId) {
+		this.contaId = contaId;
+	}
+
+	public double getValor() {
 		return valor;
 	}
 
-	public void setValor(Float valor) {
+	public void setValor(double valor) {
 		this.valor = valor;
 	}
 
