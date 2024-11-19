@@ -12,31 +12,30 @@ import com.coleta.monetiza.model.Conta;
 import com.coleta.monetiza.repository.ContaRepository;
 
 @Service
-public class ContaService implements IService<Conta> {
+public class ContaService {
 	@Autowired
 	private ContaRepository repository;
 
 	public ContaService() {
 	}
 
-	@Override
-	public Conta findById(Long id) {
-		Optional<Conta> obj = repository.findById(id);
-		return obj.orElse(null);
+	public Optional<Conta> findById(Long id) {
+		return repository.findById(id);
 	}
 
-	
 	public Page<Conta> findAll(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
 
-	@Override
+	public List<Conta> findAll() {
+		return null;
+	}
+
 	public Conta create(Conta conta) {
 		repository.save(conta);
 		return conta;
 	}
 
-	@Override
 	public boolean update(Conta conta) {
 		if (repository.existsById(conta.getId())) {
 			repository.save(conta);
@@ -45,7 +44,6 @@ public class ContaService implements IService<Conta> {
 		return false;
 	}
 
-	@Override
 	public boolean delete(Long id) {
 		if (repository.existsById(id)) {
 			repository.deleteById(id);
@@ -54,8 +52,16 @@ public class ContaService implements IService<Conta> {
 		return false;
 	}
 
-	@Override
-	public List<Conta> findAll() {
-		return null;
+	public void depositar(Conta conta, double valor) {
+		double novoSaldo = conta.getSaldo() + valor;
+		conta.setSaldo(novoSaldo);
+		update(conta);
 	}
+
+	public void sacar(Conta conta, double valor) {
+		double novoSaldo = conta.getSaldo() - valor;
+		conta.setSaldo(novoSaldo);
+		update(conta);
+	}
+
 }

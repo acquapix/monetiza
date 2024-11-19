@@ -62,7 +62,7 @@ public class ContaController implements IController<Conta>{
 	@Override
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Conta> get(@PathVariable("id") Long id) {
-		Conta conta = service.findById(id);
+		Conta conta = service.findById(id).get();
 		if (conta != null) {
 			return ResponseEntity.ok(conta);
 			//HTTP 200 OK
