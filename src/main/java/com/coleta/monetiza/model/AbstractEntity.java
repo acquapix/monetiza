@@ -10,6 +10,7 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -41,5 +42,4 @@ public abstract class AbstractEntity implements Serializable {
         final AbstractEntity other = (AbstractEntity) obj;
         return Objects.equals(this.id, other.id);
     }
-        
 }

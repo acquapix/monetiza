@@ -1,0 +1,23 @@
+meta {
+  name: saida
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:8080/api/movimentacao
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "valor": 500,
+    "tipo": "SAIDA",
+    "descricao": "teste",
+    "conta": {
+      "id": 1
+    },
+    "data": "2024-11-23 15:07"
+  }
+}

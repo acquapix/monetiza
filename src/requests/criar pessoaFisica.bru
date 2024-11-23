@@ -1,0 +1,25 @@
+meta {
+  name: criar pessoaFisica
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/pessoaFisica
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "nome": "João",
+    "endereco": "Rua X, Y",
+    "conta": {
+      "agencia": 11111,
+      "numero": "22222",
+      "saldo": 1000
+    },
+    "cpf": "11111111111",
+    "profissao": "dev"
+  }
+}

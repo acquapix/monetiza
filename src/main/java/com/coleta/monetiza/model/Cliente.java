@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 @Table(name = "tb_cliente")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cliente extends AbstractEntity {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "nm_nome", length = 60)
@@ -25,7 +26,10 @@ public abstract class Cliente extends AbstractEntity {
 	@JoinColumn(name = "fk_conta_id", unique = true)
 	private Conta conta;
 
-	public String getNome() {
+	public Cliente() {
+    }
+
+    public String getNome() {
 		return nome;
 	}
 
@@ -47,8 +51,5 @@ public abstract class Cliente extends AbstractEntity {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
-	}
-
-	public Cliente() {
 	}
 }
