@@ -42,9 +42,9 @@ public class MovimentacaoController implements IController<Movimentacao> {
 	@Override
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Movimentacao> get(@PathVariable("id") Long id) {
-		Movimentacao movimentacao = service.findById(id);
-		if (movimentacao != null) {
-			return ResponseEntity.ok(movimentacao);
+		Optional<Movimentacao> movimentacao = service.findById(id);
+		if (movimentacao.isPresent()) {
+			return ResponseEntity.ok(movimentacao.get());
 			// HTTP 200 OK
 		}
 		return ResponseEntity.notFound().build();
@@ -56,13 +56,13 @@ public class MovimentacaoController implements IController<Movimentacao> {
 	public ResponseEntity<Movimentacao> post(@RequestBody Movimentacao movimentacao) {
 		Optional<Conta> conta = contaService.findById(movimentacao.getContaId());
 
-		if(conta.isPresent()) {
+		if (conta.isPresent()) {
 			if (movimentacao.getTipo() == TipoMovimentacao.ENTRADA) {
 				contaService.depositar(conta.get(), movimentacao.getValor());
-			}
-			if (movimentacao.getTipo() == TipoMovimentacao.SAIDA) {
+			} else if (movimentacao.getTipo() == TipoMovimentacao.SAIDA) {
 				contaService.sacar(conta.get(), movimentacao.getValor());
 			}
+
 			service.create(movimentacao);
 			return ResponseEntity.status(HttpStatus.CREATED).body(movimentacao);
 		}

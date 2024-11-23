@@ -14,8 +14,10 @@ import jakarta.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cliente extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
+	
 	@Column(name = "nm_nome", length = 60)
 	private String nome;
+
 	@Column(name = "ds_endereco", length = 120)
 	private String endereco;
 

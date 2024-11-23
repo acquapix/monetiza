@@ -28,7 +28,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/pessoaFisica")
 @Tag(name = "Pessoa Física", description = "Gerenciar pessoa física")
-public class PessoaFisicaController implements IController<PessoaFisica>{
+public class PessoaFisicaController implements IController<PessoaFisica> {
+	
 	@Autowired
 	private PessoaFisicaService service;
 	

@@ -16,11 +16,10 @@ public class AbstractService<T> implements IService<T> {
 	}
 
 	@Override
-	public T findById(Long id) {
-		Optional<T> obj = repository.findById(id);
-		return obj.orElse(null);
+	public Optional<T> findById(Long id) {
+		return repository.findById(id);
 	}
-
+	
 	@Override
 	public List<T> findAll() {
 		return repository.findAll();

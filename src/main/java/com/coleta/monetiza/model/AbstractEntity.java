@@ -11,6 +11,7 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +23,7 @@ public abstract class AbstractEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     @Override
     public int hashCode() {
         int hash = 7;
