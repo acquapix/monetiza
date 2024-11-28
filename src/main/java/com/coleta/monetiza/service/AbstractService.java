@@ -3,12 +3,14 @@ package com.coleta.monetiza.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.coleta.monetiza.model.AbstractEntity;
 
 public class AbstractService<T> implements IService<T> {
-	
+
 	private JpaRepository<T, Long> repository;
 
 	public AbstractService(JpaRepository<T, Long> repository) {
@@ -16,14 +18,18 @@ public class AbstractService<T> implements IService<T> {
 	}
 
 	@Override
-	public T findById(Long id) {
-		Optional<T> obj = repository.findById(id);
-		return obj.orElse(null);
+	public Optional<T> findById(Long id) {
+		return repository.findById(id);
 	}
 
 	@Override
 	public List<T> findAll() {
 		return repository.findAll();
+	}
+
+	@Override
+	public Page<T> findAll(Pageable pageable) {
+		return repository.findAll(pageable);
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +32,7 @@ public class MovimentacaoController implements IController<Movimentacao> {
 
 	@Autowired
 	private MovimentacaoService service;
+
 	@Autowired
 	private ContaService contaService;
 
@@ -40,11 +43,18 @@ public class MovimentacaoController implements IController<Movimentacao> {
 	}
 
 	@Override
+	@Operation(summary = "Retorna a lista de movimentacoes, de forma paginada", description = "Obtém uma lista de movimentacoes com todos os seus dados, de forma paginada")
+	@GetMapping(value = "/page")
+	public ResponseEntity<Page<Movimentacao>> getAll(Pageable pageable) {
+		return ResponseEntity.ok(service.findAll(pageable));
+	}
+
+	@Override
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Movimentacao> get(@PathVariable("id") Long id) {
-		Movimentacao movimentacao = service.findById(id);
-		if (movimentacao != null) {
-			return ResponseEntity.ok(movimentacao);
+		Optional<Movimentacao> movimentacao = service.findById(id);
+		if (movimentacao.isPresent()) {
+			return ResponseEntity.ok(movimentacao.get());
 			// HTTP 200 OK
 		}
 		return ResponseEntity.notFound().build();
@@ -54,15 +64,15 @@ public class MovimentacaoController implements IController<Movimentacao> {
 	@PostMapping
 	@Operation(summary = "Cria uma movimentacao")
 	public ResponseEntity<Movimentacao> post(@RequestBody Movimentacao movimentacao) {
-		Optional<Conta> conta = contaService.findById(movimentacao.getContaId());
+		Optional<Conta> conta = contaService.findById(movimentacao.getConta().getId());
 
-		if(conta.isPresent()) {
+		if (conta.isPresent()) {
 			if (movimentacao.getTipo() == TipoMovimentacao.ENTRADA) {
 				contaService.depositar(conta.get(), movimentacao.getValor());
-			}
-			if (movimentacao.getTipo() == TipoMovimentacao.SAIDA) {
+			} else if (movimentacao.getTipo() == TipoMovimentacao.SAIDA) {
 				contaService.sacar(conta.get(), movimentacao.getValor());
 			}
+			
 			service.create(movimentacao);
 			return ResponseEntity.status(HttpStatus.CREATED).body(movimentacao);
 		}
