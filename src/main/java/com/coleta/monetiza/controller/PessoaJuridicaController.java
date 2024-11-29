@@ -2,8 +2,11 @@ package com.coleta.monetiza.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.coleta.monetiza.model.PessoaJuridica;import com.coleta.monetiza.service.PessoaJuridicaService;
+import com.coleta.monetiza.model.PessoaJuridica;
+import com.coleta.monetiza.service.PessoaJuridicaService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -27,96 +31,82 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/pessoaJuridica")
 @Tag(name = "Pessoa Jurídica", description = "Gerenciar pessoa jurídica")
-public class PessoaJuridicaController implements IController<PessoaJuridica>{
+public class PessoaJuridicaController implements IController<PessoaJuridica> {
+	
 	@Autowired
 	private PessoaJuridicaService service;
-	
+
 	@Override
 	@GetMapping(produces = "application/json")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200"
-					   , description = "Resultado com sucesso"
-					   , content = {@Content(mediaType = "application/json")}
-			),
-			@ApiResponse(responseCode = "500"
-			           , description = "Erro interno do servidor"
-			           , content = {@Content(mediaType = "application/json")} 
-			)
+			@ApiResponse(responseCode = "200", description = "Resultado com sucesso", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = {
+					@Content(mediaType = "application/json") })
 	})
 	@Operation(summary = "Retorna a lista de pessoas jurídica")
-	public ResponseEntity<List<PessoaJuridica>> getAll(){
+	public ResponseEntity<List<PessoaJuridica>> getAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
 
 	@Override
+	@Operation(summary = "Retorna a lista de pessoas jurídicas, de forma paginada", description = "Obtém uma lista de pessoas jurídicas com todos os seus dados, de forma paginada")
+	@GetMapping(value = "/page")
+	public ResponseEntity<Page<PessoaJuridica>> getAll(Pageable pageable) {
+		return ResponseEntity.ok(service.findAll(pageable));
+	}
+
+	@Override
 	@GetMapping(value = "/{id}", produces = "application/json")
-	@Operation(summary = "Obtém uma pessoa jurídica"
-			 , description = "Dado um id, retorna a pessoa jurídica associada.")
+	@Operation(summary = "Obtém uma pessoa jurídica", description = "Dado um id, retorna a pessoa jurídica associada.")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200"
-					   , description = "Resultado com sucesso"
-					   , content = {@Content(mediaType = "application/json")}
-			),
-			@ApiResponse(responseCode = "500"
-	           , description = "Erro interno do servidor"
-	           , content = {@Content(mediaType = "application/json")} 
-	        ),
-			@ApiResponse(responseCode = "404"
-	           , description = "Cliente não encontrado"
-	           , content = {@Content(mediaType = "application/json")} 
-			)
-	})	
+			@ApiResponse(responseCode = "200", description = "Resultado com sucesso", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado", content = {
+					@Content(mediaType = "application/json") })
+	})
 	public ResponseEntity<PessoaJuridica> get(@PathVariable("id") Long id) {
-		PessoaJuridica pessoaJuridica = service.findById(id);
-		if (pessoaJuridica != null) {
-			return ResponseEntity.ok(pessoaJuridica);
+		Optional<PessoaJuridica> pessoaJuridica = service.findById(id);
+		if (pessoaJuridica.isPresent()) {
+			return ResponseEntity.ok(pessoaJuridica.get());
 		}
 		return ResponseEntity.notFound().build();
-	}	
-	
+	}
+
 	@Override
 	@PostMapping
 	@Operation(summary = "Cria uma pessoa jurídica")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "201"
-					   , description = "Cliente criado com sucesso"
-					   , content = {@Content(mediaType = "application/json")}
-			),
-			@ApiResponse(responseCode = "500"
-	           , description = "Erro interno do servidor"
-	           , content = {@Content(mediaType = "application/json")} 
-	        )
-	})		
-	public ResponseEntity<PessoaJuridica> post(@RequestBody PessoaJuridica pessoaJuridica){
+			@ApiResponse(responseCode = "201", description = "Cliente criado com sucesso", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = {
+					@Content(mediaType = "application/json") })
+	})
+	public ResponseEntity<PessoaJuridica> post(@RequestBody PessoaJuridica pessoaJuridica) {
 		service.create(pessoaJuridica);
 
 		URI location = ServletUriComponentsBuilder
-						.fromCurrentRequest()
-						.path("/{id}")
-						.buildAndExpand(pessoaJuridica.getId())
-						.toUri();
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(pessoaJuridica.getId())
+				.toUri();
 		return ResponseEntity.created(location).body(pessoaJuridica);
 	}
-	
+
 	@Override
 	@PutMapping
-	@Operation(summary = "Atualiza uma pessoa jurídica"
-			 , description = "Atualização por completo de uma pessoa jurídica.")
+	@Operation(summary = "Atualiza uma pessoa jurídica", description = "Atualização por completo de uma pessoa jurídica.")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200"
-					   , description = "Resultado com sucesso"
-					   , content = {@Content(mediaType = "application/json")}
-			),
-			@ApiResponse(responseCode = "500"
-	           , description = "Erro interno do servidor"
-	           , content = {@Content(mediaType = "application/json")} 
-	        ),
-			@ApiResponse(responseCode = "404"
-	           , description = "Cliente não encontrado"
-	           , content = {@Content(mediaType = "application/json")} 
-			)
+			@ApiResponse(responseCode = "200", description = "Resultado com sucesso", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado", content = {
+					@Content(mediaType = "application/json") })
 	})
-	public ResponseEntity<PessoaJuridica> put(@RequestBody PessoaJuridica pessoaJuridica){
+	public ResponseEntity<PessoaJuridica> put(@RequestBody PessoaJuridica pessoaJuridica) {
 		if (service.update(pessoaJuridica)) {
 			return ResponseEntity.ok(pessoaJuridica);
 		}
@@ -125,47 +115,34 @@ public class PessoaJuridicaController implements IController<PessoaJuridica>{
 
 	@Override
 	@PatchMapping
-	@Operation(summary = "Atualiza uma pessoa jurídica"
-	 , description = "Atualização parcial de uma pessoa jurídica.")
+	@Operation(summary = "Atualiza uma pessoa jurídica", description = "Atualização parcial de uma pessoa jurídica.")
 	@ApiResponses(value = {
-		@ApiResponse(responseCode = "200"
-				   , description = "Resultado com sucesso"
-				   , content = {@Content(mediaType = "application/json")}
-		),
-		@ApiResponse(responseCode = "500"
-	      , description = "Erro interno do servidor"
-	      , content = {@Content(mediaType = "application/json")} 
-	   ),
-		@ApiResponse(responseCode = "404"
-	      , description = "Cliente não encontrado"
-	      , content = {@Content(mediaType = "application/json")} 
-		)
-	})	
-	public ResponseEntity<PessoaJuridica> patch(@RequestBody PessoaJuridica pessoaJuridica){
+			@ApiResponse(responseCode = "200", description = "Resultado com sucesso", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado", content = {
+					@Content(mediaType = "application/json") })
+	})
+	public ResponseEntity<PessoaJuridica> patch(@RequestBody PessoaJuridica pessoaJuridica) {
 		if (service.update(pessoaJuridica)) {
 			return ResponseEntity.ok(pessoaJuridica);
 		}
 		return ResponseEntity.notFound().build();
-	}	
-	
+	}
+
 	@Override
 	@DeleteMapping(value = "/{id}")
 	@Operation(summary = "Exclui uma pessoa jurídica")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200"
-					   , description = "Resultado com sucesso"
-					   , content = {@Content(mediaType = "application/json")}
-			),
-			@ApiResponse(responseCode = "500"
-		      , description = "Erro interno do servidor"
-		      , content = {@Content(mediaType = "application/json")} 
-		   ),
-			@ApiResponse(responseCode = "404"
-		      , description = "Cliente não encontrado"
-		      , content = {@Content(mediaType = "application/json")} 
-			)
-		})	
-	public ResponseEntity<PessoaJuridica> delete(@PathVariable("id") Long id){
+			@ApiResponse(responseCode = "200", description = "Resultado com sucesso", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado", content = {
+					@Content(mediaType = "application/json") })
+	})
+	public ResponseEntity<PessoaJuridica> delete(@PathVariable("id") Long id) {
 		if (service.delete(id)) {
 			return ResponseEntity.noContent().build();
 		}

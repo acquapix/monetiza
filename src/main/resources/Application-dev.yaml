@@ -1,17 +1,17 @@
 spring:
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:test
-    username: sa
-    password:
-
-  h2:
-    console:
-      enabled: true
-      settings.web-allow-others: true
+    driverClassName: org.postgresql.Driver 
+    url: jdbc:postgresql://localhost:5432/dbzinho
+    username: postgres
+    password: root
 
   jpa:
+    hibernate:
+      ddl-auto: update
+    generate-dll: true
     show-sql: true
+    generate-ddl: true
+    hibernate.ddl-auto: update
 
 api:
   security:
