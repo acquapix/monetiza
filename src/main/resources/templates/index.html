@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
         <title>
             LOGIN
@@ -17,16 +17,16 @@
             <li><a th:href="@{/cadastrocliente}">ENTRAR</a></li>
         </ul>
             <div id="login-img">
-                <img src="./img/peglev-icon.png" alt="PegLev">
+                <img th:src="@{/img/peglev-icon.png}" alt="PegLev">
             </div>
             <div id="login-card-container">
                 <div class="login-card-style">
                     <h1></h1>
                     <p></p>
-                    <form th:action="@{/cadastro}" method=post th:object="${cliente}">
-                        <input type="text" th:field="*{email}" placeholder="e-mail">
-                         <input type="text" th:field="*{senha}" placeholder="Senha">
-                        <button type="submit">LOGIN</button>
+                    <form>
+                        <input type="text" placeholder="E-mail">
+                         <input type="text" placeholder="Senha">
+                        <a th:href="@{/principal}"><button type="button">Login</button></a>
                     </form>
                 </div>
                 <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
