@@ -1,22 +1,34 @@
 package com.coleta.monetiza.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_conta")
 public class Conta extends AbstractEntity {
+
 	private static final long serialVersionUID = 1L;
+
 	@Column(name = "nr_agencia", nullable = false)
 	private Integer agencia;
+
 	@Column(name = "nm_numero", nullable = false, length = 10)
 	private String numero;
+
 	@Column(name = "vl_saldo", nullable = false)
 	private Double saldo;
 
-	public Conta() {
+	@OneToMany(mappedBy = "conta")
+	private List<Movimentacao> movimentacoes;
 
+	@OneToMany(mappedBy = "conta")
+	private List<Token> tokens;
+
+	public Conta() {
 	}
 
 	public Conta(Long id) {
@@ -46,5 +58,4 @@ public class Conta extends AbstractEntity {
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
-
 }

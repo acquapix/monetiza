@@ -5,7 +5,7 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
-    hibernate.ddl-auto: auto
+    hibernate.ddl-auto: update
     show-sql: false
 
 api:
