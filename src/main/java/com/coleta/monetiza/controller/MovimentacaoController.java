@@ -60,6 +60,11 @@ public class MovimentacaoController implements IController<Movimentacao> {
 		return ResponseEntity.notFound().build();
 	}
 
+	@GetMapping("/conta/{id}")
+	public ResponseEntity<List<Movimentacao>> listarMovimentacaoDaConta(@PathVariable Integer id) {
+		return ResponseEntity.ok(service.listarMovimentacaoByContaId(id));
+	}
+
 	@Override
 	@PostMapping
 	@Operation(summary = "Cria uma movimentacao")
