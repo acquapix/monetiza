@@ -25,6 +25,9 @@ public class Conta extends AbstractEntity {
 	@OneToMany(mappedBy = "conta")
 	private List<Movimentacao> movimentacoes;
 
+	@OneToMany(mappedBy = "conta")
+	private List<Token> tokens;
+
 	public Conta() {
 	}
 
