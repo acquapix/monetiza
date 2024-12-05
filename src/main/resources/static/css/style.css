@@ -31,6 +31,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    line-height: 1.5; 
 }
 
 #login-card-container {
@@ -80,15 +81,6 @@
     color: var(--texto);
     transform: scale(0.995);
 }
-<<<<<<< HEAD
-=======
-.profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 2px solid #ddd;
-  }
->>>>>>> 7f6ed5f5ee4b50be3e5ed063980469d71a6bfc6d
 
 #login-img {
     display: flex;
@@ -205,19 +197,3 @@ td {
     filter: brightness(90%);
     transition: all 0.3s ease-in-out;
 }
-<<<<<<< HEAD
-
-/*MODAL*/
-/* .modal-form {
-    position: fixed;
-    box-sizing: border-box;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90vw;
-    padding: 20px;
-    background-color: var(--background-branco);
-    border-radius: 24px;
-    filter: drop-shadow[_{{{CITATION{{{_1{](https://github.com/AnnieGlade4327/Team-Profile-Generator/tree/de9031cbd2c32f9d6f610c40af1bb0d04b57510d/src%2Ftemplate.js)[_{{{CITATION{{{_2{](https://github.com/R0L3eX9/webdev-generator/tree/514007a2fd8f588cba1ce8cdd9f679c75acd7570/lib%2FfilesContent.js) */
-=======
->>>>>>> 7f6ed5f5ee4b50be3e5ed063980469d71a6bfc6d

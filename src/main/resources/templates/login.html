@@ -13,9 +13,6 @@
         <h1>
             login
         </h1>
-        <ul>
-            <li><a th:href="@{/cadastrocliente}">ENTRAR</a></li>
-        </ul>
             <div id="login-img">
                 <img src="./img/peglev-icon.png" alt="PegLev">
             </div>
@@ -27,6 +24,9 @@
                          <input type="password" th:field="*{senha}" placeholder="Senha">
                         <button type="submit">LOGIN</button>
                     </form>
+                    <ul>
+                        <li><a th:href="@{/cadastrocliente}">CRIAR CONTA</a></li>
+                    </ul>
                 </div>
                 <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
             </div>
