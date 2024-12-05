@@ -6,7 +6,7 @@
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
         <title>
-            <h1>LOGIN</h1>
+            LOGIN
         </title>
     </head>
     <body id="login-container">
@@ -16,7 +16,7 @@
             <div class="profile-image-container">
               <img src="https://avatars.githubusercontent.com/u/1713290?v=4" alt="Perfil" class="profile-image" />
             </div>
-            <h3>Dados pessoais:</h3>
+            <!-- <h3>Dados pessoais:</h3>
             <p>AUDRIN PEREIRA, 53 anos, DEVELOPER</p>
       
             <h3>Formação:</h3>
@@ -30,11 +30,36 @@
       
             <h3>Projetos:</h3>
             <p>PEGLEV</p>
-            <p>EDUCADORES DO MEIO AMBIENTE</p>
-          </div>
+            <p>EDUCADORES DO MEIO AMBIENTE</p> -->
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nome}"></td>
+                <td th:text="${cliente.cpf}"></td>
+            </tr>
+
+          </div>    <table>
+        <tr>
+            <th>ID</th>
+            <td th:text="${cliente['id']}"></td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td th:text="${cliente['nome']}"></td>
+        </tr>
+        <tr>
+            <th>Endereço</th>
+            <td th:text="${cliente['endereco']}"></td>
+        </tr>
+        <tr>
+            <th>CPF</th>
+            <td th:text="${cliente['cpf']}"></td>
+        </tr>
+        <tr>
+            <th>Profissão</th>
+            <td th:text="${cliente['profissao']}"></td>
+        </tr>
+    </table>
                 <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
             </div>
-
-        
     </body>
 </html>

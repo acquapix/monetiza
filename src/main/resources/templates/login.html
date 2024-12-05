@@ -21,20 +21,14 @@
             </div>
             <div id="login-card-container">
                 <div class="login-card-style">
-                    <h1></h1>
                     <p></p>
                     <form th:action="@{/cadastro}" method=post th:object="${cliente}">
                         <input type="text" th:field="*{email}" placeholder="e-mail">
-                         <input type="text" th:field="*{senha}" placeholder="Senha">
+                         <input type="password" th:field="*{senha}" placeholder="Senha">
                         <button type="submit">LOGIN</button>
                     </form>
                 </div>
                 <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
             </div>
-        
-            
-            <script src="./login.js" defer></script>
-            <script src="./crud.js"></script>
-        
     </body>
 </html>
