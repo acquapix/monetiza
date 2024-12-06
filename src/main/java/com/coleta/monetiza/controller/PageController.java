@@ -35,6 +35,7 @@ public class PageController {
     @PostMapping("/cadastrocliente")
     public String cadastrar(Model model, @ModelAttribute PessoaFisica cliente) {
         pessoaFisicaService.create(cliente);
+        model.addAttribute("cliente", cliente);
         return "sucesso";
     }
 }
