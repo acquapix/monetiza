@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title>Cadastro</title>
+</head>
+<body id="login-container">
+    <div id="login-img">
+        <img src="./img/peglev-icon.png" alt="PegLev">
+    </div>
+    <div id="login-card-container">
+        <div class="login-card-style">
+            <h1>CADASTRAR COLETA</h1>
+            <p></p>
+            <div class="image-container" id="imageContainer">
+                <span class="placeholder-text" id="imagePlaceholder">Foto</span>
+              </div>
+              <input type="file" class="file-input" id="imageInput" accept="image/*" onchange="handleImageUpload()">
+                <form th:action="@{/cadastro}" method=post th:object="${cliente}">
+                    <select class="select" id="categoria">
+                        <option value="">Categoria de resíduo</option>
+                        <option value="seco">Seco</option>
+                        <option value="umido">Úmido</option>
+                        <option value="eletronico">Eletrônico</option>
+                    </select>
+                    <input type="text" class="input" id="subtipo" placeholder="Subtipo: Papelão, Plástico">
+                    <input type="datetime-local" class="input" id="dataHora">
+                    <input type="text" class="input" id="local" placeholder="Local da Coleta: Endereço">
+                    <button type="submit">Cadastrar</button>
+                </form>
+        </div>
+        <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+    </div>
+
+    
+    <script src="./login.js" defer></script>
+    <script src="./crud.js"></script>
+</body>
+</html>
