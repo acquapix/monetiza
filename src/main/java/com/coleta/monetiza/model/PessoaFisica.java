@@ -3,9 +3,17 @@ package com.coleta.monetiza.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tb_pessoa_fisica")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PessoaFisica extends Cliente {
 
     private static final long serialVersionUID = 1L;
@@ -16,22 +24,4 @@ public class PessoaFisica extends Cliente {
     @Column(name="nm_profissao", length = 30)
     private String profissao; 
 
-    public PessoaFisica() {
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getProfissao() {
-		return profissao;
-	}
-
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
-	}
 }
