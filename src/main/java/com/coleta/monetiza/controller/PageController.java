@@ -26,6 +26,11 @@ public class PageController {
         return "principal";
     }
 
+    @GetMapping("/feed")
+    public String feed() {
+        return "feed";
+    }
+
     @GetMapping("/cadastrocliente")
     public String cadastroCliente(Model model) {
         model.addAttribute("cliente", new PessoaFisica());
