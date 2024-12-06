@@ -31,10 +31,15 @@ public class PageController {
         model.addAttribute("cliente", new PessoaFisica());
         return "cadastrocliente";
     }
-
+    
     @PostMapping("/cadastrocliente")
     public String cadastrar(Model model, @ModelAttribute PessoaFisica cliente) {
         pessoaFisicaService.create(cliente);
         return "sucesso";
+    }
+
+    @GetMapping("/perfil")
+    public String perfilUsuario() {
+        return "perfilUsuario";
     }
 }
