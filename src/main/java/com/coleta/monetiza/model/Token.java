@@ -10,9 +10,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Table(name = "tb_token")
 @Entity
+@Getter
+@Setter
 public class Token extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
@@ -33,16 +37,5 @@ public class Token extends AbstractEntity {
         this.conta = conta;
         this.token = UUID.randomUUID().toString();
     }
-
-    public String getToken() {
-        return token;
-    }
-
-    public Conta getConta() {
-        return conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
-    }
+    
 }

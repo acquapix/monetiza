@@ -11,25 +11,35 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "tb_movimentacao")
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Movimentacao extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "vl_valor")
+	@Column(name = "vl_valor", nullable = false)
 	private double valor;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "nm_tipo_movimentacao")
+	@Column(name = "nm_tipo_movimentacao", nullable = false)
 	private TipoMovimentacao tipo;
 
-	@Column(name = "ds_descricao", length = 100)
-	private String descricao;
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "fk_tipo_coleta_id", nullable = false)
+	private TipoColeta tipoColeta;
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "fk_conta_id", nullable = false)
@@ -40,46 +50,4 @@ public class Movimentacao extends AbstractEntity {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Calendar data;
 
-	public Movimentacao() {
-	}
-
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
-	public TipoMovimentacao getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoMovimentacao tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Conta getConta() {
-		return conta;
-	}
-
-	public void setConta(Conta conta) {
-		this.conta = conta;
-	}
-
-	public Calendar getData() {
-		return data;
-	}
-
-	public void setData(Calendar data) {
-		this.data = data;
-	}
 }
