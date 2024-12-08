@@ -24,7 +24,10 @@
 .hidden {
     display: none !important;
 }
-
+.bg-light {
+    --bs-bg-opacity: 1;
+    background-color: #70d18c !important;
+}
 #login-container {
     display: flex;
     height: 100vh;
@@ -43,7 +46,9 @@
     width: 50vw;
     padding: 20px;
 }
-
+body {
+    background-color:#70d18c;
+}
 .login-card-style h1, .login-card-style p {
     text-align: center;
     color: var(--texto-branco);

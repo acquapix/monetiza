@@ -21,14 +21,37 @@
     -->
     <form th:action="@{/movimentacao}" method="post" th:object="${cliente}"> 
 
-        Nome: <input type="text" th:field="*{nome}"><br>
-        cpf: <input type="text" th:field="*{cpf}"><br>
-        
-        <input type="submit" value="Cadastrar" name="cadastrar">
+        Coletas:<div class="container my-5">
+            <h2 class="mb-4">Selecione os itens</h2>
+            <form action="/process-list" method="post">
+                <!-- Lista de elementos -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="selectedItems" value="Item 1" id="item1">
+                    <label class="form-check-label" for="item1">Item 1</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="selectedItems" value="Item 2" id="item2">
+                    <label class="form-check-label" for="item2">Item 2</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="selectedItems" value="Item 3" id="item3">
+                    <label class="form-check-label" for="item3">Item 3</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="selectedItems" value="Item 4" id="item4">
+                    <label class="form-check-label" for="item4">Item 4</label>
+                </div>
+    
+                <!-- Botão para enviar -->
+                <button type="submit" class="btn btn-primary mt-4">Enviar Seleção</button>
+            </form>
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     
     </form>
     
-    <a th:href="@{/}">Voltar para index</a>
+    <a th:href="@{/}">Inicial</a>
 
 </body>
 </html>
