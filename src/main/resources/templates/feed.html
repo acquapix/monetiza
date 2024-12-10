@@ -64,11 +64,9 @@
                 <a href="/" class="text-dark">
                     <i class="bi bi-house-door-fill"></i>
                 </a>
-                <form action="/search" method="get" class="d-flex align-items-center">
-                    <input type="text" class="form-control form-control-sm me-2" name="query" placeholder="Buscar">
-                    <button type="submit" class="btn btn-outline-primary btn-sm">
-                        <i class="bi bi-search"></i>
-                    </button>
+                <form th:action="@{/buscar}" th:method="get" class="d-flex align-items-center">
+                    <input type="text" name="ramoAtividade" placeholder="Digite o ramo de atividade" required />
+                    <button type="submit">Buscar</button>
                 </form>
                 <a href="/perfil" class="text-dark">
                     <img src="/images/perfil.jpg" alt="Profile" class="rounded-circle" width="30">

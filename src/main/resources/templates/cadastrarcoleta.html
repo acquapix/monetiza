@@ -19,12 +19,18 @@
                 <span class="placeholder-text" id="imagePlaceholder">Foto</span>
               </div>
               <input type="file" class="file-input" id="imageInput" accept="image/*" onchange="handleImageUpload()">
-                <form th:action="@{/cadastro}" method=post th:object="${cliente}">
+                <form th:action="@{/cadastrarcoleta}" method=post th:object="${movimentacao}">
                     <select class="select" id="categoria">
                         <option value="">Categoria de resíduo</option>
-                        <option value="seco">Seco</option>
-                        <option value="umido">Úmido</option>
-                        <option value="eletronico">Eletrônico</option>
+                        <option value="SECO">Seco</option>
+                        <option value="UMIDO">Úmido</option>
+                        <option value="ELETROELETRONICO">Eletrônico</option>
+                    </select>
+                    <select class="select" id="cooperativa">
+                        <option value="">cooperativa1</option>
+                        <option value="SECO">cooperativa1</option>
+                        <option value="UMIDO">cooperativa1</option>
+                        <option value="ELETROELETRONICO">cooperativa1</option>
                     </select>
                     <input type="text" class="input" id="subtipo" placeholder="Subtipo: Papelão, Plástico">
                     <input type="datetime-local" class="input" id="dataHora">
@@ -36,7 +42,29 @@
     </div>
 
     
-    <script src="./login.js" defer></script>
-    <script src="./crud.js"></script>
+    <h1>Listagem de Clientes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="movimentacao : ${entrada}">
+                    <td th:text="${coleta.id}"></td>
+                    <td th:text="${coleta.tipo}"></td>
+                    <td th:text="${cliente.cpf}"></td>
+                    <td><a th:href="@{'/bonificar/' + ${coleta.id}}">Selecionar</a></td>
+                    <td>
+                        <form th:action="@{'/token/' + ${coleta.id}}" method="post">
+                            <input type="submit" value="bonificar">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}">Voltar</a>
 </body>
 </html>

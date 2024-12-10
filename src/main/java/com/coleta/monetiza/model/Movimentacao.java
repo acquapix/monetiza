@@ -11,7 +11,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -37,8 +36,8 @@ public class Movimentacao extends AbstractEntity {
 	@Column(name = "nm_tipo_movimentacao", nullable = false)
 	private TipoMovimentacao tipo;
 
-	@OneToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "fk_tipo_coleta_id", nullable = false)
+	@Enumerated(EnumType.STRING)
+	@Column(name = "nm_tipo_coleta", nullable = false)
 	private TipoColeta tipoColeta;
 
 	@ManyToOne(cascade = { CascadeType.MERGE })

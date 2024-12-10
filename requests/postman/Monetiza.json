@@ -5,7 +5,7 @@
   },
   "item": [
     {
-      "name": "criar pessoaFisica",
+      "name": "criar pessoaColaboradora",
       "event": [],
       "request": {
         "method": "POST",
@@ -13,14 +13,14 @@
         "auth": null,
         "description": "",
         "url": {
-          "raw": "http://localhost:8080/api/pessoaFisica",
+          "raw": "http://localhost:8080/api/pessoaColaboradora",
           "protocol": "http",
           "host": [
             "localhost:8080"
           ],
           "path": [
             "api",
-            "pessoaFisica"
+            "pessoaColaboradora"
           ],
           "query": [],
           "variable": []
@@ -115,7 +115,7 @@
       }
     },
     {
-      "name": "listar pessoas fisicas",
+      "name": "listar pessoas colaboradoras",
       "event": [],
       "request": {
         "method": "GET",
@@ -123,14 +123,14 @@
         "auth": null,
         "description": "",
         "url": {
-          "raw": "http://localhost:8080/api/pessoaFisica",
+          "raw": "http://localhost:8080/api/pessoaColaboradora",
           "protocol": "http",
           "host": [
             "localhost:8080"
           ],
           "path": [
             "api",
-            "pessoaFisica"
+            "pessoaColaboradora"
           ],
           "query": [],
           "variable": []

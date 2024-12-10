@@ -59,8 +59,30 @@
         <input class="modal-input" type="text" value="" placeholder="Senha">
         <input class="modal-button" onclick="create(event)" type="button" value="Cadastrar novo usuário">
     </form>
-    <script src="./login.js"></script>
-    <script src="./crud.js"></script>
+    <h1>Listagem de Clientes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="movimentacao : ${entrada}">
+                    <td th:text="${coleta.id}"></td>
+                    <td th:text="${coleta.tipo}"></td>
+                    <td th:text="${cliente.cpf}"></td>
+                    <td><a th:href="@{'/bonificar/' + ${coleta.id}}">Selecionar</a></td>
+                    <td>
+                        <form th:action="@{'/bonificar/' + ${coleta.id}}" method="post">
+                            <input type="submit" value="bonificar">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}">Voltar</a>
 
 </body>
 </html>

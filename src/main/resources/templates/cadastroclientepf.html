@@ -13,13 +13,13 @@
     </div>
     <div id="login-card-container">
         <div class="login-card-style">
-            <h1>CRIAR CONTA</h1>
+            <h1>CRIAR FÍSICA</h1>
             <p></p>
-            <form th:action="@{/cadastrocliente}" method=post th:object="${cliente}">
+            <form th:action="@{/cadastroclientepf}" method=post th:object="${cliente}">
                 <input type="text" th:field="${cliente.nome}" placeholder="Nome">
                 <input type="text" th:field="${cliente.endereco}" placeholder="Endereço">
-                 <!--<input type="text" th:field="${cliente.cpf}" placeholder="CPF">
-                 <input type="text" th:field="${cliente.profissao}" placeholder="Profissão">-->
+                 <input type="text" th:field="${cliente.cpf}" placeholder="CPF">
+                 <input type="text" th:field="${cliente.profissao}" placeholder="Profissão">
                 <button type="submit">CRIAR</button>
             </form>
         </div>

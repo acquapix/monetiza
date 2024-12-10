@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <title>
+            BONIFICA
+        </title>
+    </head>
+    <body id="login-container">
+        <h1>
+            login
+        </h1>
+            <div id="login-img">
+                <img src="./img/peglev-icon.png" alt="PegLev">
+            </div>
+            <div id="login-card-container">
+                <div class="login-card-style">
+                    <p></p>
+                    <form th:action="@{/cadastro}" method=post th:object="${cliente}">
+                        <input type="text" th:field="*{email}" placeholder="e-mail">
+                         <input type="password" th:field="*{senha}" placeholder="Senha">
+                        <button type="submit">bonifica/button>
+                    </form>
+                    <ul>
+                        <li><a th:href="@{/cadastrocliente}">CRIAR CONTA</a></li>
+                    </ul>
+                </div>
+                <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+            </div>
+    </body>
+</html>

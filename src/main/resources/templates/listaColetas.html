@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <title>
+            Lista Coleta e Bonifica
+        </title>
+    </head>
+    <body id="login-container">
+        <h1>Listagem de Coletas</h1>
+        <table>
+            <tbody>
+                <tr th:each="movimentacao : ${entrada}">
+                    <td th:text="${coleta.id}"></td>
+                    <td th:text="${coleta.tipo}"></td>
+                    <td th:text="${cliente.cpf}"></td>
+                    <td><a th:href="@{'/bonificar/' + ${coleta.id}}">Selecionar</a></td>
+                    <td>
+                    <form th:action="@{'/bonificar/' + ${coleta.id}}" method="post">
+                        <input type="submit" value="bonificar">
+                    </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}">Voltar</a>
+        <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+    </body>
+</html>

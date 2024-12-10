@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title>
+        Resultados da Busca
+    </title>
+</head>
+<body>
+    <h1 id="login-card-container">Resultados da Busca</h1>
+    <table>
+        <thead>
+            <tr>
+                <h3><th>Nome</th></h3>
+                <h3><th>Ramo de Atividade</th></h3>
+                <h3><th>Depositar</th></h3>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pessoa : ${resultados}">
+                <td th:text="${pessoa.nome}"></td>
+                <td th:text="${pessoa.ramoAtividade}"></td>
+                <td><a th:href="@{/cadastrarcoleta}">Depositar</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
