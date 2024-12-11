@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <title>Cadastro</title>
 </head>
@@ -27,22 +27,20 @@
                         <option value="ELETROELETRONICO">Eletrônico</option>
                     </select>
                     <select class="select" id="cooperativa">
-                        <option value="">cooperativa1</option>
+                        <option value="">cooperativas</option>
                         <option value="SECO">cooperativa1</option>
-                        <option value="UMIDO">cooperativa1</option>
-                        <option value="ELETROELETRONICO">cooperativa1</option>
+                        <option value="UMIDO">cooperativa2</option>
+                        <option value="ELETROELETRONICO">cooperativa3</option>
                     </select>
                     <input type="text" class="input" id="subtipo" placeholder="Subtipo: Papelão, Plástico">
                     <input type="datetime-local" class="input" id="dataHora">
-                    <input type="text" class="input" id="local" placeholder="Local da Coleta: Endereço">
+                    <input type="text" class="input" id="qtd" placeholder="valor em kg ou litros">
+                    <!--<input type="text" class="input" id="local" placeholder="Local da Coleta: Endereço">-->
                     <button type="submit">Cadastrar</button>
                 </form>
         </div>
-        <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+        <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
     </div>
-
-    
-    <h1>Listagem de Clientes</h1>
         <table>
             <thead>
                 <tr>
