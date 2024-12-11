@@ -67,7 +67,14 @@ public class PageController {
     public String cadastrar(Model model, @ModelAttribute PessoaJuridica cliente) {
         pessoaJuridicaService.create(cliente);
         model.addAttribute("cliente", cliente);
-        return "sucesso";
+        return "sucessopj";
+    }
+
+    
+    @GetMapping("/cadastrocolabora")
+    public String cadastroColabora(Model model) {
+        model.addAttribute("cliente", new PessoaJuridica());
+        return "cadastrocolabora";
     }
 
     @GetMapping("/perfil")
@@ -93,10 +100,10 @@ public class PageController {
         return "cadastrarcoleta";
     }
 
-    @PostMapping("/cadastrarcoleta")
+    @PostMapping("/registrodaColeta")
     public String cadastrar(Model model, @ModelAttribute Movimentacao movimentacao) {
         movimentacaoService.create(movimentacao);
         model.addAttribute("movimentacao", movimentacao);
-        return "sucesso";
+        return "registrodaColeta";
     }
 }

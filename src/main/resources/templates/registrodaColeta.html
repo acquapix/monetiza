@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <title>
+            LOGIN
+        </title>
+    </head>
+    <body id="login-container">
+            <div id="login-img">
+                <img th:src="@{/img/peglev-icon.png}" alt="PegLev">
+            </div>
+            <div class="container">
+                <h1>Agenda Coleta</h1>
+            
+                <!-- Seção para carregar imagem -->
+                <div class="image-container" id="imageContainer">
+                  <span class="placeholder-text" id="imagePlaceholder">Foto</span>
+                </div>
+                <input type="file" class="file-input" id="imageInput" accept="image/*" onchange="handleImageUpload()">
+            
+                <!-- Categoria de resíduo -->
+                <select class="select" id="categoria">
+                  <option value="">Categoria de resíduo</option>
+                  <option value="seco">Seco</option>
+                  <option value="umido">Úmido</option>
+                  <option value="eletronico">Eletrônico</option>
+                </select>
+            
+                <!-- Subtipo -->
+                <input type="text" class="input" id="subtipo" placeholder="Subtipo: Papelão, Plástico">
+            
+                <!-- Data e hora -->
+                <input type="datetime-local" class="input" id="dataHora">
+            
+                <!-- Local -->
+                <input type="text" class="input" id="local" placeholder="Local da Coleta: Endereço">
+            
+                <!-- Botão de Agendar -->
+                <button class="button" onclick="agendarColeta()">Agendar</button>
+              </div>
+            
+              <script>
+                // Função para exibir a imagem selecionada
+                function handleImageUpload() {
+                  const fileInput = document.getElementById('imageInput');
+                  const imageContainer = document.getElementById('imageContainer');
+                  const imagePlaceholder = document.getElementById('imagePlaceholder');
+            
+                  const file = fileInput.files[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                      imageContainer.innerHTML = `<img src="${e.target.result}" alt="Imagem de Coleta">`;
+                    };
+                    reader.readAsDataURL(file);
+                  } else {
+                    imageContainer.innerHTML = `<span class="placeholder-text" id="imagePlaceholder">Foto</span>`;
+                  }
+                }
+            
+                // Função para agendar coleta (exibir dados no console)
+                function agendarColeta() {
+                  const categoria = document.getElementById('categoria').value;
+                  const subtipo = document.getElementById('subtipo').value;
+                  const dataHora = document.getElementById('dataHora').value;
+                  const local = document.getElementById('local').value;
+                  const imageInput = document.getElementById('imageInput').files[0];
+            
+                  const dados = {
+                    categoria,
+                    subtipo,
+                    dataHora,
+                    local,
+                    imagem: imageInput ? imageInput.name : null,
+                  };
+            
+                  console.log('Coleta agendada com os seguintes dados:', dados);
+                }
+              </script>
+                <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+            </div>
+    </body>
+</html>

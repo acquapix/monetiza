@@ -6,13 +6,15 @@
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
         <title>
-            <h1>CADASTRO DE CLIENTES</h1>
+            SISTEMA CADASTRO DE CLIENTES
         </title>
     </head>
     <body id="login-container">
-        <h1>Seja Bem-vindo!</h1>
-        <ul>
-            <li><a th:href="@{/feed}">login</a></li>
-        </ul>
+        <div id="login-img">
+            <img th:src="@{/img/peglev-icon.png}" alt="PegLev">
+        </div>
+        <h1>
+            <a th:href="@{/cadastrocolabora}">Sucesso! Seja bem-vindo! <span th:text="${cliente.nome}"></span></a>
+        </h1>
     </body>
 </html>

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
-    <title>Tabela de clientes</title>
+    <title>Colaboradores</title>
 </head>
 <body id="table-page-container">
     <div id="table-container">
         <div id="table-header">
             <h1>Bem vindo(a), <span id="admin-name"></span></h1>
-            <button id="create-btn">+ Cadastrar novo cliente </button>
+            <button id="create-btn">+ Cadastrar novo colaborador </button>
         </div>
         <div id="table-overflow">
             <table>

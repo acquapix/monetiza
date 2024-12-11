@@ -54,9 +54,9 @@
                     <td th:text="${coleta.id}"></td>
                     <td th:text="${coleta.tipo}"></td>
                     <td th:text="${cliente.cpf}"></td>
-                    <td><a th:href="@{'/bonificar/' + ${coleta.id}}">Selecionar</a></td>
+                    <td><a th:href="@{'/registrodaColeta/' + ${coleta.id}}">Selecionar</a></td>
                     <td>
-                        <form th:action="@{'/token/' + ${coleta.id}}" method="post">
+                        <form th:action="@{'/registrodaColeta/' + ${coleta.id}}" method="post">
                             <input type="submit" value="bonificar">
                         </form>
                     </td>
