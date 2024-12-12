@@ -19,12 +19,12 @@ public class Conta extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "nr_agencia", nullable = false)
-	private Integer agencia;
+	private String agencia;
 
 	@Column(name = "nm_numero", nullable = false, length = 10)
 	private String numero;
 
 	@Column(name = "vl_saldo", nullable = false)
-	private Double saldo;
+	private Double saldo = 0.0;
 
 }

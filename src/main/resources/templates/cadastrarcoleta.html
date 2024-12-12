@@ -1,68 +1,60 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <title>Cadastro</title>
 </head>
+
 <body id="login-container">
     <div id="login-img">
         <img src="./img/peglev-icon.png" alt="PegLev">
     </div>
     <div id="login-card-container">
         <div class="login-card-style">
-            <h1>CADASTRAR COLETA</h1>
-            <p></p>
-            <div class="image-container" id="imageContainer">
-                <span class="placeholder-text" id="imagePlaceholder">Foto</span>
-              </div>
-              <input type="file" class="file-input" id="imageInput" accept="image/*" onchange="handleImageUpload()">
-                <form th:action="@{/cadastrarcoleta}" method=post th:object="${movimentacao}">
-                    <select class="select" id="categoria">
-                        <option value="">Categoria de resíduo</option>
-                        <option value="SECO">Seco</option>
-                        <option value="UMIDO">Úmido</option>
-                        <option value="ELETROELETRONICO">Eletrônico</option>
-                    </select>
-                    <select class="select" id="cooperativa">
-                        <option value="">cooperativas</option>
-                        <option value="SECO">cooperativa1</option>
-                        <option value="UMIDO">cooperativa2</option>
-                        <option value="ELETROELETRONICO">cooperativa3</option>
-                    </select>
-                    <input type="text" class="input" id="subtipo" placeholder="Subtipo: Papelão, Plástico">
-                    <input type="datetime-local" class="input" id="dataHora">
-                    <input type="text" class="input" id="qtd" placeholder="valor em kg ou litros">
-                    <!--<input type="text" class="input" id="local" placeholder="Local da Coleta: Endereço">-->
-                    <button type="submit">Cadastrar</button>
-                </form>
+            <h1>CADASTRAR COLETA PARA COOPERATIVA <span th:text="${cooperativa.nome}"></span></h1>
+            <form th:action="@{/cadastrarcoleta}" method=post th:object="${movimentacao}">
+                <input th:name="cooperativaId" type="hidden" th:value="${cooperativa.id}"/>
+                <input th:field="*{valor}" type="number" class="input" id="valor"/>
+                <select th:field="*{tipoColeta}" class="select" id="tipoColeta">
+                    <option value="">Categoria de resíduo</option>
+                    <option value="SECO">Seco</option>
+                    <option value="UMIDO">Úmido</option>
+                    <option value="ELETROELETRONICO">Eletroeletrônico</option>
+                </select>
+                <button type="submit">Cadastrar</button>
+            </form>
         </div>
-        <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+        <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank"
+                rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app"
+                target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
     </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="movimentacao : ${entrada}">
-                    <td th:text="${coleta.id}"></td>
-                    <td th:text="${coleta.tipo}"></td>
-                    <td th:text="${cliente.cpf}"></td>
-                    <td><a th:href="@{'/registrodaColeta/' + ${coleta.id}}">Selecionar</a></td>
-                    <td>
-                        <form th:action="@{'/registrodaColeta/' + ${coleta.id}}" method="post">
-                            <input type="submit" value="bonificar">
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a th:href="@{/}">Voltar</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="movimentacao : ${entrada}">
+                <td th:text="${coleta.id}"></td>
+                <td th:text="${coleta.tipo}"></td>
+                <td th:text="${cliente.cpf}"></td>
+                <td><a th:href="@{'/registrodaColeta/' + ${coleta.id}}">Selecionar</a></td>
+                <td>
+                    <form th:action="@{'/registrodaColeta/' + ${coleta.id}}" method="post">
+                        <input type="submit" value="bonificar">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Voltar</a>
 </body>
+
 </html>
