@@ -79,7 +79,7 @@ public class PageController {
 
     @GetMapping("/perfil")
     public String perfilUsuario() {
-        return "perfilUsuario";
+        return "perfilusuario";
     }
 
     @GetMapping("/buscar")

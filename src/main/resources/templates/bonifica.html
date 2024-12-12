@@ -22,13 +22,13 @@
                     <form th:action="@{/cadastro}" method=post th:object="${cliente}">
                         <input type="text" th:field="*{email}" placeholder="e-mail">
                          <input type="password" th:field="*{senha}" placeholder="Senha">
-                        <button type="submit">bonifica/button>
+                        <button type="submit">bonificar</button>
                     </form>
                     <ul>
                         <li><a th:href="@{/cadastrocliente}">CRIAR CONTA</a></li>
                     </ul>
                 </div>
-                <p class="credits">Projeto desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+                <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="noopener noreferrer">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
             </div>
     </body>
 </html>
