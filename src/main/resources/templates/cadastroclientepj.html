@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <title>Cadastro</title>
 </head>
+
 <body id="login-container">
     <div id="login-img">
         <img src="./img/peglev-icon.png" alt="PegLev">
@@ -16,14 +18,19 @@
             <h1>CRIAR PESSOA JURÍDICA</h1>
             <p></p>
             <form th:action="@{/cadastroclientepj}" method=post th:object="${cliente}">
-                <input type="text" th:field="${cliente.nome}" placeholder="Nome">
-                <input type="text" th:field="${cliente.endereco}" placeholder="Endereço">
-                 <input type="text" th:field="${cliente.cnpj}" placeholder="CNPJ">
-                 <input type="text" th:field="${cliente.ramoAtividade}" placeholder="Ramo de atividade">
+                <input type="text" th:field="*{nome}" placeholder="Nome">
+                <input type="text" th:field="*{endereco}" placeholder="Endereço">
+                <input type="text" th:field="*{cnpj}" placeholder="CNPJ">
+                <input type="text" th:field="*{ramoAtividade}" placeholder="Ramo de atividade">
+                <input type="text" th:field="*{conta.agencia}" placeholder="Agência">
+                <input type="text" th:field="*{conta.numero}" placeholder="Número">
                 <button type="submit">CRIAR</button>
             </form>
         </div>
-        <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="">@audrincp (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank" rel="noopener noreferrer">PegLevApp</a></p>
+        <p class="credits">Desenvolvido por <a href="https://github.com/audrincp" target="_blank" rel="">@audrincp
+                (Github)</a> aplicativo <a href="https://www.peglev.app" target="_blank"
+                rel="noopener noreferrer">PegLevApp</a></p>
     </div>
 </body>
+
 </html>

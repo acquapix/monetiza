@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coleta.monetiza.model.Conta;
 import com.coleta.monetiza.model.Movimentacao;
 import com.coleta.monetiza.model.PessoaFisica;
 import com.coleta.monetiza.model.PessoaJuridica;
+import com.coleta.monetiza.model.TipoColeta;
+import com.coleta.monetiza.model.TipoMovimentacao;
+import com.coleta.monetiza.service.ContaService;
 import com.coleta.monetiza.service.MovimentacaoService;
 import com.coleta.monetiza.service.PessoaFisicaService;
 import com.coleta.monetiza.service.PessoaJuridicaService;
@@ -28,6 +32,9 @@ public class PageController {
 
     @Autowired
     private MovimentacaoService movimentacaoService;
+
+    @Autowired
+    private ContaService contaService;
 
     @GetMapping("/")
     public String index() {
@@ -92,18 +99,20 @@ public class PageController {
 
     
     @GetMapping("/cadastrarcoleta")
-    public String cadastroColeta(Model model) {
-        var pessoaFisica = pessoaFisicaService.findById((long) 1);
-        List<PessoaJuridica> cooperativas = pessoaJuridicaService.findAll();
-        model.addAttribute("cliente", pessoaFisica);
-        model.addAttribute("cooperativas", cooperativas);
+    public String cadastroColeta(Model model, @RequestParam Long cooperativaId) {
+        PessoaJuridica cooperativa = pessoaJuridicaService.findById(cooperativaId).get();
+        model.addAttribute("cooperativa", cooperativa);
+        model.addAttribute("movimentacao", new Movimentacao());
         return "cadastrarcoleta";
     }
 
-    @PostMapping("/registrodaColeta")
-    public String cadastrar(Model model, @ModelAttribute Movimentacao movimentacao) {
+    @PostMapping("/cadastrarcoleta")
+    public String cadastrar(@ModelAttribute Movimentacao movimentacao, @RequestParam Long cooperativaId) {
+        Conta conta = pessoaJuridicaService.findById(cooperativaId).get().getConta();
+        movimentacao.setTipo(TipoMovimentacao.ENTRADA);
+        movimentacao.setConta(conta);
         movimentacaoService.create(movimentacao);
-        model.addAttribute("movimentacao", movimentacao);
-        return "registrodaColeta";
+        contaService.depositar(conta, movimentacao.getValor());
+        return "redirect:/feed";
     }
 }
