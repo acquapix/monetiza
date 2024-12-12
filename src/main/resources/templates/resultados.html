@@ -22,6 +22,9 @@
                     <th>Ramo de Atividade</th>
                 </h3>
                 <h3>
+                    <th>Saldo</th>
+                </h3>
+                <h3>
                     <th>Depositar</th>
                 </h3>
             </tr>
@@ -30,6 +33,7 @@
             <tr th:each="cooperativa : ${resultados}">
                 <td th:text="${cooperativa.nome}"></td>
                 <td th:text="${cooperativa.ramoAtividade}"></td>
+                <td >R$<span th:text="${cooperativa.conta.saldo}"></span></td>
                 <td>
                     <form th:action="@{/cadastrarcoleta}" method="get">
                         <input type="hidden" th:name="cooperativaId" th:value="${cooperativa.id}" />
